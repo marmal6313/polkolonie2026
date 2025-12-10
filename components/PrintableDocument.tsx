@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { AppState, Term } from '../types';
 
@@ -35,7 +34,7 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
         <>
       {/* --- PAGE 1 --- */}
       <div className="page-break-after-always min-h-[29.7cm] p-8 relative">
-        <div className="text-center font-bold mb-6">
+        <div className="text-center font-bold mb-6 uppercase">
           <p>KARTA KWALIFIKACYJNA UCZESTNIKA WYPOCZYNKU</p>
         </div>
 
@@ -69,7 +68,7 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
 
             <div className="mb-2 flex items-baseline">
                 <span className="mr-2">2. Termin wypoczynku</span>
-                <span className="font-bold px-2">{term?.dates}</span>
+                <span className="border-b-2 border-dotted border-black font-bold px-2 flex-1">{term?.dates}</span>
             </div>
 
             <div className="mb-2">
@@ -111,7 +110,7 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
         </div>
 
         {/* II. INFORMACJE DOTYCZĄCE UCZESTNIKA WYPOCZYNKU */}
-        <div className="border-t-2 border-black pt-2">
+        <div className="border-t-4 border-black pt-2">
             <h3 className="font-bold mb-4">II. INFORMACJE DOTYCZĄCE UCZESTNIKA WYPOCZYNKU</h3>
             
             <div className="space-y-4">
@@ -126,15 +125,13 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
                 </div>
 
                 <div>
-                    <div className="flex items-baseline gap-2">
-                        <span>3. Rok urodzenia</span>
-                        <span className="flex-1 border-b-2 border-dotted border-black font-bold px-2">{childData.birthYear}</span>
-                    </div>
+                    <div className="mb-1">3. Rok urodzenia</div>
+                    <div className="border-b-2 border-dotted border-black font-bold h-6">{childData.birthYear}</div>
                 </div>
 
                 <div>
                     <div className="mb-1">4. Numer PESEL uczestnika wypoczynku</div>
-                    <div className="flex">
+                    <div className="flex pt-1">
                        {childData.pesel.split('').map((char, i) => (
                            <div key={i} className="w-6 h-8 border border-black flex items-center justify-center font-bold mr-1">
                                {char}
@@ -231,7 +228,7 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
             </div>
 
             {/* III. DECYZJA ORGANIZATORA */}
-            <div className="border-t-2 border-black pt-2">
+            <div className="border-t-4 border-black pt-2">
                  <h3 className="font-bold mb-4 uppercase">III. DECYZJA ORGANIZATORA WYPOCZYNKU O ZAKWALIFIKOWANIU UCZESTNIKA WYPOCZYNKU DO UDZIAŁU W WYPOCZYNKU</h3>
                  
                  <div className="mb-4">
@@ -267,20 +264,27 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
       <div className="page-break-after-always min-h-[29.7cm] p-8 pt-12 relative">
           
           {/* IV */}
-          <div className="mb-8">
-               <h3 className="font-bold mb-4 uppercase border-b-2 border-black pb-1">IV. POTWIERDZENIE PRZEZ KIEROWNIKA WYPOCZYNKU POBYTU UCZESTNIKA WYPOCZYNKU W MIEJSCU WYPOCZYNKU</h3>
+          <div className="mb-10">
+               <h3 className="font-bold mb-4 uppercase border-b-4 border-black pb-1">IV. POTWIERDZENIE PRZEZ KIEROWNIKA WYPOCZYNKU POBYTU UCZESTNIKA WYPOCZYNKU W MIEJSCU WYPOCZYNKU</h3>
                
-               <div className="mb-2">
-                   Uczestnik przebywał ........................................................................................................................................................
+               <div className="mb-2 flex items-baseline">
+                   <span className="whitespace-nowrap mr-2">Uczestnik przebywał</span>
+                   <span className="border-b-2 border-dotted border-black flex-1 h-5"></span>
                </div>
-               <div className="text-center text-xs mb-4">(adres miejsca wypoczynku)</div>
+               <div className="text-center text-xs mb-6 relative -top-1">(adres miejsca wypoczynku)</div>
 
                <div className="flex justify-between mb-8">
-                   <div className="w-5/12">od dnia (dzień, miesiąc, rok) ........................</div>
-                   <div className="w-5/12">do dnia (dzień, miesiąc, rok) ........................</div>
+                   <div className="w-1/2 flex items-baseline pr-2">
+                       <span className="whitespace-nowrap mr-2">od dnia (dzień, miesiąc, rok)</span>
+                       <span className="border-b-2 border-dotted border-black flex-1 h-5"></span>
+                   </div>
+                   <div className="w-1/2 flex items-baseline pl-2">
+                        <span className="whitespace-nowrap mr-2">do dnia (dzień, miesiąc, rok)</span>
+                        <span className="border-b-2 border-dotted border-black flex-1 h-5"></span>
+                   </div>
                </div>
 
-                <div className="flex justify-between items-end mt-12">
+                <div className="flex justify-between items-end mt-16">
                     <div className="text-center w-5/12">
                         <div className="border-b-2 border-dotted border-black h-5"></div>
                         <div className="text-xs">(data)</div>
@@ -293,16 +297,16 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
           </div>
 
           {/* V */}
-          <div className="mb-8">
-              <h3 className="font-bold mb-4 uppercase border-b-2 border-black pb-1 text-justify">V. INFORMACJA KIEROWNIKA WYPOCZYNKU O STANIE ZDROWIA UCZESTNIKA WYPOCZYNKU W CZASIE TRWANIA WYPOCZYNKU ORAZ O CHOROBACH PRZEBYTYCH W JEGO TRAKCIE</h3>
-              <div className="space-y-2">
+          <div className="mb-10">
+              <h3 className="font-bold mb-4 uppercase border-b-4 border-black pb-1 text-justify leading-tight">V. INFORMACJA KIEROWNIKA WYPOCZYNKU O STANIE ZDROWIA UCZESTNIKA WYPOCZYNKU W CZASIE TRWANIA WYPOCZYNKU ORAZ O CHOROBACH PRZEBYTYCH W JEGO TRAKCIE</h3>
+              <div className="space-y-3">
                   <div className="border-b-2 border-dotted border-black h-5"></div>
                   <div className="border-b-2 border-dotted border-black h-5"></div>
                   <div className="border-b-2 border-dotted border-black h-5"></div>
                   <div className="border-b-2 border-dotted border-black h-5"></div>
               </div>
 
-               <div className="flex justify-between items-end mt-8">
+               <div className="flex justify-between items-end mt-12">
                     <div className="text-center w-5/12">
                         <div className="border-b-2 border-dotted border-black h-5"></div>
                         <div className="text-xs">(miejscowość, data)</div>
@@ -316,8 +320,8 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
 
           {/* VI */}
           <div className="mb-8">
-               <h3 className="font-bold mb-4 uppercase border-b-2 border-black pb-1">VI. INFORMACJA I SPOSTRZEŻENIA WYCHOWAWCY WYPOCZYNKU DOTYCZĄCE POBYTU UCZESTNIKA WYPOCZYNKU</h3>
-               <div className="space-y-2">
+               <h3 className="font-bold mb-4 uppercase border-b-4 border-black pb-1">VI. INFORMACJA I SPOSTRZEŻENIA WYCHOWAWCY WYPOCZYNKU DOTYCZĄCE POBYTU UCZESTNIKA WYPOCZYNKU</h3>
+               <div className="space-y-3">
                   <div className="border-b-2 border-dotted border-black h-5"></div>
                   <div className="border-b-2 border-dotted border-black h-5"></div>
                   <div className="border-b-2 border-dotted border-black h-5"></div>
@@ -325,7 +329,7 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
                   <div className="border-b-2 border-dotted border-black h-5"></div>
               </div>
 
-               <div className="flex justify-between items-end mt-8 border-b-2 border-gray-400 pb-8">
+               <div className="flex justify-between items-end mt-12 border-b-4 border-black pb-8">
                     <div className="text-center w-5/12">
                         <div className="border-b-2 border-dotted border-black h-5"></div>
                         <div className="text-xs">(miejscowość, data)</div>
@@ -337,7 +341,7 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
                 </div>
           </div>
 
-          <div className="text-xs space-y-1 pl-4">
+          <div className="text-xs space-y-1 pl-4 font-normal mt-auto">
               <p className="flex gap-2"><span>1)</span> <span>Właściwe zaznaczyć znakiem „X”.</span></p>
               <p className="flex gap-2"><span>2)</span> <span>W przypadku wypoczynku o charakterze wędrownym.</span></p>
               <p className="flex gap-2"><span>3)</span> <span>W przypadku uczestnika niepełnoletniego.</span></p>
@@ -351,7 +355,7 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
        <div className={`${onlyContract ? '' : 'break-before-page'} p-8 pt-12 relative min-h-[29.7cm] text-[12pt]`}>
          <div className="font-bold text-center mb-6">
              <p className="uppercase">UMOWA NR DO. ........</p>
-             <p>na opiekę nad dziećmi w ramach półkolonii pn. ,,Wakacje z MOSIREM’’</p>
+             <p>na opiekę nad dziećmi w ramach półkolonii pn. ,,Ferie z MOSIREM’’</p>
              <p className="font-normal mt-2">
                  zawarta w Ostrowi Mazowieckiej w dniu <span className="font-bold">{contractSignatureData ? dayMonth : '..................'}</span> 2026 r. pomiędzy:
              </p>
@@ -363,8 +367,8 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
                  Miasto Ostrów Mazowiecka, ul. 3 Maja 66, 07-300 Ostrów Mazowiecka, NIP 7591625088
                  podmiot reprezentujący - Miejski Ośrodek Sportu i Rekreacji, ul. H. Trębickiego 10,
                  07–300 Ostrów Mazowiecka, zwany w dalszej części umowy MOSiR, reprezentowanym przez
-                 Marcina Maliszewskiego – Dyrektora,
-                 przy udziale Katarzyny Śniadały – Głównego Księgowego,
+                 Dyrektora,
+                 przy udziale Głównego Księgowego,
              </p>
              <p className="mt-2">a:</p>
          </div>
@@ -426,10 +430,10 @@ export const PrintableDocument: React.FC<Props> = ({ data, term, onlyContract })
          
          <div className="text-center font-bold mb-4">§ 1.</div>
          <div className="text-justify mb-4">
-             1. Warunkiem uczestnictwa w półkolonii pn. „Wakacje z MOSIREM” jest uiszczenie opłaty
-             za wypoczynek dziecka w wysokości <strong>630 zł</strong> brutto (słownie:sześćset trzydzieści złotych brutto),
+             1. Warunkiem uczestnictwa w półkolonii pn. „Ferie z MOSIREM” jest uiszczenie opłaty
+             za wypoczynek dziecka w wysokości <strong>630 zł</strong> brutto (słownie: sześćset trzydzieści złotych brutto),
              po wcześniejszym zgłoszeniu chęci uczestnictwa i podpisaniu umowy.
-             Opłaty należy dokonać w kasie MOSiR.
+             Opłaty należy dokonać na konto lub w kasie MOSiR (tylko w wyjątkowych przypadkach).
          </div>
 
          <div className="text-center font-bold mb-4">§ 2.</div>
